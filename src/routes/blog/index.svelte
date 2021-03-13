@@ -1,15 +1,22 @@
 <script context="module" lang="ts">
-  export function preload() {
-    return this.fetch(`blog.json`)
-      .then((r: { json: () => any }) => r.json())
-      .then((posts: { slug: string; title: string; html: any }[]) => {
-        return { posts };
-      });
-  }
+  import type { Preload } from "@sapper/common";
+
+  type Post = {
+    slug: string;
+    title: string;
+    html: unknown;
+  };
+  export const preload: Preload = async function (this) {
+    const result = await this.fetch(`blog.json`);
+    const posts = (await result.json()) as Array<Post>;
+    return {
+      posts,
+    };
+  };
 </script>
 
 <script lang="ts">
-  export let posts: { slug: string; title: string; html: any }[];
+  export let posts: Array<Post>;
 </script>
 
 <svelte:head>

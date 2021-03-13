@@ -1,11 +1,12 @@
 import posts from "./_posts.js";
+import type { SapperResponse, SapperRequest } from "@sapper/server";
 
 const lookup = new Map();
 posts.forEach((post) => {
   lookup.set(post.slug, JSON.stringify(post));
 });
 
-export function get(req, res, next) {
+export const get = (req: SapperRequest, res: SapperResponse): void => {
   // the `slug` parameter is available because
   // this file is called [slug].json.js
   const { slug } = req.params;
@@ -27,4 +28,4 @@ export function get(req, res, next) {
       })
     );
   }
-}
+};

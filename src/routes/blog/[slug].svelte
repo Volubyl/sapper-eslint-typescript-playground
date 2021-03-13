@@ -1,20 +1,22 @@
 <script context="module" lang="ts">
-  export async function preload({ params }) {
+  import type { Preload } from "@sapper/common";
+  import type { Post } from "../../definitions";
+  export const preload: Preload = async function (this, { params }) {
     // the `slug` parameter is available because
     // this file is called [slug].svelte
     const res = await this.fetch(`blog/${params.slug}.json`);
-    const data = await res.json();
+    const data = (await res.json()) as Post | Error;
 
     if (res.status === 200) {
       return { post: data };
     } else {
-      this.error(res.status, data.message);
+      this.error(res.status, (data as Error).message);
     }
-  }
+  };
 </script>
 
 <script lang="ts">
-  export let post: { slug: string; title: string; html: any };
+  export let post: Post;
 </script>
 
 <svelte:head>
