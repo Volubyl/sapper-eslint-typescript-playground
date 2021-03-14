@@ -1,4 +1,4 @@
-⚠️ ** THIS IS CURRENTLY A WORK IN PROGRESS **
+⚠️ **THIS IS CURRENTLY A WORK IN PROGRESS**
 
 # Sapper TypeScript and Eslint Playground
 
