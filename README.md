@@ -1,3 +1,5 @@
+⚠️ ** THIS IS CURRENTLY A WORK IN PROGRESS **
+
 # Sapper TypeScript and Eslint Playground
 
 The base template comes from [Sapper](https://github.com/sveltejs/sapper)
